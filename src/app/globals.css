@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+:root {
+  --color-ink: #1a1816;
+  --color-paper: #faf6ee;
+  --color-amber: #d4a24c;
+  --color-stone: #6b6358;
+  --color-surface: #2e2a26;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-paper: var(--color-paper);
+  --color-amber: var(--color-amber);
+  --color-stone: var(--color-stone);
+  --color-surface: var(--color-surface);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background-color: var(--color-amber);
+  color: var(--color-ink);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-stone) transparent;
+}
