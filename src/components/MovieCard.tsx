@@ -1,41 +1,56 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image";
 import { Movie } from "@/types/movie";
+import { useState } from "react";
 
 export default function MovieCard({ movie }: { movie: Movie }) {
+  const [hovered, setHovered] = useState(false);
   const year = movie.releaseDate?.slice(0, 4) ?? "—";
+  const posterUrl = movie.posterPath
+    ? `https://image.tmdb.org/t/p/w500${movie.posterPath}`
+    : null;
+
+  const rating = movie.voteAverage;
+  const ratingColor = rating >= 7.5 ? "#4ade80" : rating >= 6 ? "#d4a24c" : "#f87171";
 
   return (
-    <Link
-      href={`/movie/${movie.id}`}
-      className="group relative block focus:outline-none"
-    >
-      <div className="relative aspect-2/3 overflow-hidden rounded-sm border border-ink/10 bg-surface">
-        {/* Poster placeholder until real images come in */}
-        <div className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-stone/30 to-ink/40">
-          <span className="font-display text-2xl italic text-paper/70 px-4 text-center">
-            {movie.title}
-          </span>
+    <Link href={`/movie/${movie.id}`} style={{ display: "block", textDecoration: "none" }}>
+      <div
+        style={{ position: "relative", aspectRatio: "2/3", borderRadius: "8px", overflow: "hidden", background: "#1a1a1f", marginBottom: "10px" }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {posterUrl && (
+          <img
+            src={posterUrl}
+            alt={movie.title}
+            style={{
+              width: "100%", height: "100%", objectFit: "cover", display: "block",
+              transform: hovered ? "scale(1.04)" : "scale(1)",
+              transition: "transform 0.4s ease",
+            }}
+          />
+        )}
+
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%)", pointerEvents: "none" }} />
+
+        <div style={{
+          position: "absolute", bottom: "10px", left: "10px",
+          background: "rgba(0,0,0,0.7)", border: `1px solid ${ratingColor}`,
+          borderRadius: "4px", padding: "2px 8px",
+          fontFamily: "var(--font-body)", fontSize: "12px", fontWeight: 600, color: ratingColor,
+        }}>
+          {rating.toFixed(1)}
         </div>
-
-        {/* Torn-ticket corner detail */}
-        <div className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-paper" />
-
-        {/* Rating stamp */}
-        <div className="absolute bottom-2 left-2 flex h-9 w-9 items-center justify-center rounded-full border-2 border-amber bg-ink/80 font-body text-xs font-bold text-amber">
-          {movie.voteAverage.toFixed(1)}
-        </div>
-
-        {/* Hover overlay */}
-        <div className="absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/20 group-focus-visible:ring-2 group-focus-visible:ring-amber" />
       </div>
 
-      <div className="mt-3">
-        <h3 className="font-display text-base font-medium leading-tight text-ink line-clamp-1">
-          {movie.title}
-        </h3>
-        <p className="mt-0.5 font-body text-sm text-stone">{year}</p>
-      </div>
+      <h3 style={{ fontFamily: "var(--font-display)", fontSize: "15px", fontWeight: 500, color: "#f0ede8", margin: "0 0 3px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+        {movie.title}
+      </h3>
+      <p style={{ fontFamily: "var(--font-body)", fontSize: "13px", color: "#6b6358", margin: 0 }}>
+        {year}
+      </p>
     </Link>
   );
 }

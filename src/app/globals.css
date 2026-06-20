@@ -36,3 +36,12 @@ body {
   scrollbar-width: thin;
   scrollbar-color: var(--color-stone) transparent;
 }
+
+input::placeholder {
+  color: rgba(240, 237, 232, 0.3);
+}
+
+input:focus {
+  border-color: rgba(212, 162, 76, 0.4) !important;
+  background: rgba(255,255,255,0.07) !important;
+}
