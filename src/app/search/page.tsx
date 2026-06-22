@@ -1,6 +1,7 @@
 import { searchMovies } from "@/lib/tmdb";
-import MovieCard from "@/components/MovieCard";
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import MovieGrid from "@/components/MovieGrid";
 
 export default async function SearchPage({
   searchParams,
@@ -13,13 +14,10 @@ export default async function SearchPage({
 
   return (
     <div style={{ minHeight: "100vh", background: "#0d0d0f", color: "#f0ede8" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "3rem 2rem" }}>
+      <Navbar />
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "7rem 2rem 6rem" }}>
 
-        <Link href="/" style={{ fontFamily: "var(--font-body)", fontSize: "13px", color: "#6b6358", textDecoration: "none" }}>
-          ← Back to archive
-        </Link>
-
-        <div style={{ margin: "2rem 0", display: "flex", alignItems: "baseline", gap: "1rem" }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: "2rem" }}>
           <h1 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", fontStyle: "italic", fontWeight: 500, margin: 0 }}>
             "{query}"
           </h1>
@@ -36,22 +34,18 @@ export default async function SearchPage({
             <p style={{ fontFamily: "var(--font-body)", fontSize: "14px", color: "#6b6358", marginTop: "0.5rem" }}>
               Try a different title or keyword
             </p>
+            <Link href="/" style={{
+              display: "inline-block", marginTop: "1.5rem",
+              background: "#d4a24c", borderRadius: "6px",
+              padding: "0.6rem 1.5rem", fontFamily: "var(--font-body)",
+              fontSize: "14px", fontWeight: 600, color: "#0d0d0f",
+              textDecoration: "none",
+            }}>
+              Back to home →
+            </Link>
           </div>
         ) : (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: "1.5rem" }}>
-            {movies.map((movie: any) => (
-              <MovieCard key={movie.id} movie={{
-                id: movie.id,
-                title: movie.title,
-                overview: movie.overview,
-                posterPath: movie.poster_path,
-                backdropPath: movie.backdrop_path,
-                releaseDate: movie.release_date,
-                voteAverage: movie.vote_average,
-                genres: [],
-              }} />
-            ))}
-          </div>
+          <MovieGrid movies={movies} />
         )}
       </div>
     </div>

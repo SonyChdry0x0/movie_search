@@ -1,6 +1,7 @@
 import { getMovieDetail } from "@/lib/tmdb";
 import Link from "next/link";
-import NavSearch from "@/components/NavSearch";
+import Navbar from "@/components/Navbar";
+
 export default async function MovieDetailPage(
   { params }: { params: Promise<{ id: string }> }
 ) {
@@ -23,36 +24,9 @@ export default async function MovieDetailPage(
   return (
     <div style={{ minHeight: "100vh", background: "#0d0d0f", color: "#f0ede8" }}>
 
-      {/* Navbar — same as home page */}
-      {/* Navbar — matches home page */}
-<nav style={{
-  position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-  background: "rgba(13,13,15,0.5)", backdropFilter: "blur(20px)",
-  padding: "1rem 2rem",
-  display: "flex", alignItems: "center", gap: "2rem",
-}}>
-  <Link href="/" style={{ textDecoration: "none", flexShrink: 0 }}>
-    <span style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", fontStyle: "italic", fontWeight: 600, color: "#f0ede8" }}>
-      Reel Search
-    </span>
-  </Link>
+      <Navbar />
 
-  {/* Search in middle */}
-  <div style={{ flex: 1, maxWidth: "500px" }}>
-    <NavSearch />
-  </div>
-
-  <Link href="/favorites" style={{
-    fontFamily: "var(--font-body)", fontSize: "13px",
-    color: "#d4a24c", textDecoration: "none", flexShrink: 0,
-    border: "1px solid rgba(212,162,76,0.35)",
-    padding: "0.4rem 1rem", borderRadius: "6px",
-  }}>
-    ★ Favorites
-  </Link>
-</nav>
-
-      {/* Full screen backdrop — goes under navbar */}
+      {/* Full screen backdrop */}
       {backdropUrl && (
         <div style={{ position: "relative", height: "100vh", minHeight: "600px", overflow: "hidden" }}>
           <img
@@ -63,7 +37,6 @@ export default async function MovieDetailPage(
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(13,13,15,0.95) 40%, transparent 100%)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #0d0d0f 0%, transparent 55%)" }} />
 
-          {/* Title in bottom left of hero */}
           <div style={{
             position: "absolute", bottom: "4rem", left: 0, right: 0,
             maxWidth: "1100px", margin: "0 auto", padding: "0 2rem",
@@ -88,15 +61,14 @@ export default async function MovieDetailPage(
 
         <Link href="/" style={{
           fontFamily: "var(--font-body)", fontSize: "13px", color: "#6b6358",
-          textDecoration: "none", display: "inline-block",
-          margin: "2rem 0",
+          textDecoration: "none", display: "inline-block", margin: "2rem 0",
         }}>
           ← Back to archive
         </Link>
 
         <div style={{ display: "flex", gap: "3rem", flexWrap: "wrap" }}>
 
-          {/* Poster floating up over hero */}
+          {/* Poster */}
           {posterUrl && (
             <div style={{ flexShrink: 0 }}>
               <img
