@@ -1,12 +1,17 @@
 import { getMovieDetail } from "@/lib/tmdb";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import MovieGrid from "@/components/MovieGrid";
 
 export default async function MovieDetailPage(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
   const movie = await getMovieDetail(id);
+
+  const trailer = movie.videos?.results?.find(
+    (video: any) => video.site === "YouTube" && video.type === "Trailer"
+  ) ?? movie.videos?.results?.find((video: any) => video.site === "YouTube");
 
   const posterUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
@@ -34,7 +39,7 @@ export default async function MovieDetailPage(
             alt=""
             style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.5 }}
           />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(13,13,15,0.95) 40%, transparent 100%)" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(13,13,15,0.95) 10%, transparent 100%)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #0d0d0f 0%, transparent 55%)" }} />
 
           <div style={{
@@ -59,12 +64,7 @@ export default async function MovieDetailPage(
       {/* Content below hero */}
       <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2rem 6rem" }}>
 
-        <Link href="/" style={{
-          fontFamily: "var(--font-body)", fontSize: "13px", color: "#6b6358",
-          textDecoration: "none", display: "inline-block", margin: "2rem 0",
-        }}>
-          ← Back to archive
-        </Link>
+        
 
         <div style={{ display: "flex", gap: "3rem", flexWrap: "wrap" }}>
 
@@ -77,52 +77,13 @@ export default async function MovieDetailPage(
                 style={{
                   width: "240px", borderRadius: "12px", display: "block",
                   boxShadow: "0 30px 80px rgba(0,0,0,0.7)",
-                  marginTop: backdropUrl ? "-10rem" : "0",
+                  marginTop: backdropUrl ? "1rem" : "0",
                   position: "relative", zIndex: 10,
                   border: "1px solid rgba(255,255,255,0.08)",
                 }}
               />
-            </div>
-          )}
-
-          {/* Info */}
-          <div style={{ flex: 1, minWidth: "280px", paddingTop: "1rem" }}>
-
-            {/* Rating + Genres */}
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", marginBottom: "1.5rem" }}>
-              <div style={{
-                border: `1px solid ${ratingColor}`, borderRadius: "6px",
-                padding: "5px 14px", fontFamily: "var(--font-body)",
-                fontSize: "15px", fontWeight: 700, color: ratingColor,
-                background: "rgba(0,0,0,0.4)",
-              }}>
-                ★ {rating.toFixed(1)}
-              </div>
-              {genres.map((genre: string) => (
-                <span key={genre} style={{
-                  border: "1px solid rgba(255,255,255,0.12)", borderRadius: "999px",
-                  padding: "5px 14px", fontFamily: "var(--font-body)",
-                  fontSize: "12px", color: "#6b6358",
-                }}>
-                  {genre}
-                </span>
-              ))}
-            </div>
-
-            {/* Overview */}
-            <p style={{
-              fontFamily: "var(--font-body)", fontSize: "15px",
-              lineHeight: 1.8, color: "rgba(240,237,232,0.75)",
-              marginBottom: "2.5rem",
-              borderLeft: "2px solid rgba(212,162,76,0.4)",
-              paddingLeft: "1rem",
-            }}>
-              {movie.overview}
-            </p>
-
-            {/* Cast */}
-            {cast.length > 0 && (
-              <div>
+              {cast.length > 0 && (
+              <div style={{ marginBottom: "3rem" }}>
                 <h2 style={{
                   fontFamily: "var(--font-display)", fontSize: "18px",
                   fontWeight: 500, fontStyle: "italic", color: "#f0ede8",
@@ -166,6 +127,103 @@ export default async function MovieDetailPage(
                 </div>
               </div>
             )}
+            </div>
+          )}
+          
+
+          {/* Info */}
+          <div style={{ flex: 1, minWidth: "280px", paddingTop: "1rem" }}>
+
+            {/* Rating + Genres */}
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", marginBottom: "1.5rem" }}>
+              <div style={{
+                border: `1px solid ${ratingColor}`, borderRadius: "6px",
+                padding: "5px 14px", fontFamily: "var(--font-body)",
+                fontSize: "15px", fontWeight: 700, color: ratingColor,
+                background: "rgba(0,0,0,0.4)",
+              }}>
+                ★ {rating.toFixed(1)}
+              </div>
+              {genres.map((genre: string) => (
+                <span key={genre} style={{
+                  border: "1px solid rgba(255,255,255,0.12)", borderRadius: "999px",
+                  padding: "5px 14px", fontFamily: "var(--font-body)",
+                  fontSize: "12px", color: "#6b6358",
+                }}>
+                  {genre}
+                </span>
+              ))}
+            </div>
+
+            {/* Overview */}
+            <p style={{
+              fontFamily: "var(--font-body)", fontSize: "15px",
+              lineHeight: 1.8, color: "rgba(240,237,232,0.75)",
+              marginBottom: "2.5rem",
+              borderLeft: "2px solid rgba(212,162,76,0.4)",
+              paddingLeft: "1rem",
+            }}>
+              {movie.overview}
+            </p>
+
+            {/* Trailer */}
+            {trailer && (
+              <div style={{ marginBottom: "3rem" }}>
+                <h2 style={{
+                  fontFamily: "var(--font-display)", fontSize: "18px",
+                  fontWeight: 500, fontStyle: "italic", color: "#f0ede8",
+                  margin: "0 0 1.25rem",
+                  display: "flex", alignItems: "center", gap: "12px",
+                }}>
+                  Trailer
+                  <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.06)" }} />
+                </h2>
+
+                <div style={{
+                  position: "relative",
+                  width: "100%",
+                  paddingTop: "56.25%",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  boxShadow: "0 30px 80px rgba(0,0,0,0.5)",
+                  background: "#000",
+                }}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${trailer.key}`}
+                    title={`${movie.title} trailer`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{
+                      position: "absolute",
+                      top: 0, left: 0,
+                      width: "100%", height: "100%",
+                      border: "none",
+                    }}
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Cast */}
+            
+
+            {/* Similar Movies */}
+            {movie.similar?.results?.length > 0 && (
+              <div>
+                <h2 style={{
+                  fontFamily: "var(--font-display)", fontSize: "18px",
+                  fontWeight: 500, fontStyle: "italic", color: "#f0ede8",
+                  margin: "0 0 1.25rem",
+                  display: "flex", alignItems: "center", gap: "12px",
+                }}>
+                  Similar Movies
+                  <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.06)" }} />
+                </h2>
+                <MovieGrid movies={movie.similar.results.slice(0, 12)} />
+              </div>
+            )}
+
           </div>
         </div>
       </div>
