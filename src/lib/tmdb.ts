@@ -123,3 +123,10 @@ export async function getMovieDetail(id: string) {
   );
   return res.json();
 }
+export async function getTVDetail(id: string) {
+  const res = await fetch(
+    `${BASE_URL}/tv/${id}?append_to_response=credits`,
+    { headers, next: { revalidate: 3600 } }
+  );
+  return res.json();
+}

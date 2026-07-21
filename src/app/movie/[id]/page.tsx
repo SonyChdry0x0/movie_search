@@ -39,8 +39,8 @@ export default async function MovieDetailPage(
             alt=""
             style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.5 }}
           />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(13,13,15,0.95) 10%, transparent 100%)" }} />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #0d0d0f 0%, transparent 55%)" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(13,13,15,0.95) , transparent  10%)" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #0d0d0f 0%, transparent 5%)" }} />
 
           <div style={{
             position: "absolute", bottom: "4rem", left: 0, right: 0,
