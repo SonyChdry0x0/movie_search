@@ -10,6 +10,8 @@ export default async function MoviesPage() {
     getNepali(),
   ]);
 
+  //there we call all these four topic trending,playing,bollywood, nepali which we want to display in our page 
+
   const hollywoodAll = [...hollywood, ...nowPlaying].filter(
     (m, i, arr) => arr.findIndex((x: any) => x.id === m.id) === i
   );
@@ -31,3 +33,4 @@ export default async function MoviesPage() {
   );
 }
 
+//how to open the font display should be stored in this page .

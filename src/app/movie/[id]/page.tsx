@@ -6,9 +6,11 @@ import MovieGrid from "@/components/MovieGrid";
 export default async function MovieDetailPage(
   { params }: { params: Promise<{ id: string }> }
 ) {
+
+  
   const { id } = await params;
   const movie = await getMovieDetail(id);
-
+  //moviedetail page with the specific id 
   const trailer = movie.videos?.results?.find(
     (video: any) => video.site === "YouTube" && video.type === "Trailer"
   ) ?? movie.videos?.results?.find((video: any) => video.site === "YouTube");
