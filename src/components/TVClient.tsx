@@ -11,6 +11,8 @@ interface Props {
   nepali: any[];
 }
 
+//
+
 const tabs = [
   { key: "english", label: "📺 English Shows" },
   { key: "hindi", label: "🎭 Hindi Serials" },
