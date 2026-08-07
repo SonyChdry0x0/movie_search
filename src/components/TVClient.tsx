@@ -11,7 +11,7 @@ interface Props {
   nepali: any[];
 }
 
-//
+//it the props the tile put in as the array
 
 const tabs = [
   { key: "english", label: "📺 English Shows" },
