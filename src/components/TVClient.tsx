@@ -11,10 +11,11 @@ interface Props {
   nepali: any[];
 }
 
-//it the props the tile put in as the array
+//it the props the tile put in as the array. It only props the title changing the sentences.  
+
 
 const tabs = [
-  { key: "english", label: "📺 English Shows" },
+  { key: "english", label: "📺 English Shows" }, 
   { key: "hindi", label: "🎭 Hindi Serials" },
   { key: "kdrama", label: "🇰🇷 K-Drama" },
   { key: "nepali", label: "🇳🇵 Nepali TV" },
@@ -32,7 +33,7 @@ export default function TVClient({ english, hindi, kdrama, nepali }: Props) {
 
   function handleTab(key: string) {
     setActive(key);
-    router.push(`/tv?tab=${key}`, { scroll: false });
+    router.push(`/tv?tab=${key}`, { scroll: false }); //it will be the  key passes to the 
   }
 
   const shows =
@@ -72,7 +73,7 @@ export default function TVClient({ english, hindi, kdrama, nepali }: Props) {
             No shows found
           </p>
           <p style={{ fontFamily: "var(--font-body)", fontSize: "14px", color: "#6b6358", marginTop: "0.5rem" }}>
-            TMDB may not have enough data for this category yet
+            TMDB may not have enough data for this category yet . 
           </p>
         </div>
       ) : (
