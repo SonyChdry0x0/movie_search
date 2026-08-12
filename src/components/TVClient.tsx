@@ -11,7 +11,8 @@ interface Props {
   nepali: any[];
 }
 
-//it the props the tile put in as the array. It only props the title changing the sentences.  
+//It the props the tile put in as the array. It only props the title changing the sentences.  
+
 
 
 const tabs = [
