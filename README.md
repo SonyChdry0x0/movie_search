@@ -93,7 +93,7 @@ Users can:
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page](<img width="1428" height="809" alt="moviesearchimg" src="https://github.com/user-attachments/assets/b9edc606-4abc-4a09-9b67-8a080b6eda83" />
+![Home Page](screenshots/moviesearchimg.png
 )
 
 ### 🔍 Search Results
