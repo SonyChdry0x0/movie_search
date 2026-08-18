@@ -96,15 +96,6 @@ Users can:
 ![Home Page](screenshots/moviesearchimg.png
 )
 
-### 🔍 Search Results
-![Search Results](screenshots/search-results.png)
-
-### 🎬 Movie / K-Drama Details
-![Details Page](screenshots/details.png)
-
-### 🎥 Trailer
-![Trailer](screenshots/trailer.png)
-
 ## 👨‍💻 Author
 
 **Sony Chaudhary**
