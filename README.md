@@ -5,7 +5,7 @@ A responsive web application that allows users to search and explore movies and 
 ## 🚀 Features
 
 - 🔍 Search for movies and K-Dramas
-- 🎞️ View movie and K-Drama posters
+- 🎞️ View movie and Drama posters
 - ⭐ View ratings
 - 📅 View release dates
 - 🎬 Watch official trailers
