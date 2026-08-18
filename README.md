@@ -1,4 +1,4 @@
-# 🎬 Movie & K-Drama Search System
+<img width="1440" height="900" alt="Screenshot 2026-08-18 at 20 23 53" src="https://github.com/user-attachments/assets/44b3f714-7567-429d-bfb4-891bf98cb55c" /># 🎬 Movie & K-Drama Search System
 
 A responsive web application that allows users to search and explore movies and K-Dramas in one place. Users can discover detailed information about their favorite movies and dramas, watch trailers, and explore the actors and cast members involved.
 
@@ -93,12 +93,16 @@ Users can:
 ## 📸 Screenshots
 
 ### 🏠 Home Page
+![Home Page](screenshots/home.png)
 
 ### 🔍 Search Results
+![Search Results](screenshots/search-results.png)
 
 ### 🎬 Movie / K-Drama Details
+![Details Page](screenshots/details.png)
 
 ### 🎥 Trailer
+![Trailer](screenshots/trailer.png)
 
 ## 👨‍💻 Author
 
