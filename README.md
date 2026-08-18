@@ -1,16 +1,16 @@
 # 🎬 Movie & K-Drama Search System
 
-A responsive web application that allows users to search and explore movies and K-Dramas. Users can view detailed information including posters, ratings, release dates, trailers, and the actors involved in each movie or drama.
+A responsive web application that allows users to search and explore movies and K-Dramas in one place. Users can discover detailed information about their favorite movies and dramas, watch trailers, and explore the actors and cast members involved.
 
 ## 🚀 Features
 
 - 🔍 Search for movies and K-Dramas
-- 🎞️ View movie and Drama posters
+- 🎬 Watch trailers
 - ⭐ View ratings
 - 📅 View release dates
-- 🎬 Watch official trailers
-- 👥 View cast and actors
-- 📖 View movie and drama details
+- 🎞️ View movie and drama posters
+- 👥 Explore actors and cast members
+- 📖 View detailed information about movies and dramas
 - 📱 Responsive design
 - ⚡ Fast and user-friendly interface
 
@@ -22,14 +22,11 @@ A responsive web application that allows users to search and explore movies and 
 - CSS3
 - Tailwind CSS
 - Vite
-- Movie & TV API
+- TMDB API
 
 ## 📦 Installation
 
-Clone the repository:
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/SonyChdry0x0/movie_search.git
-cd movie_search
-npm install
-npm run dev
