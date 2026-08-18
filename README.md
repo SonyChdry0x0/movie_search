@@ -30,3 +30,6 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/SonyChdry0x0/movie_search.git
+cd movie_search
+npm install
+npm run dev
